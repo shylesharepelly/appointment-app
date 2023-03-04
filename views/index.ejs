@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Appointment List</title>
+   
+    
+</head>
+<body>
+    <h1 class="text-2xl text-black-900 text-center font-bold">Appointment Booking System</h1>
+    <div class="grid grid-cols-6">
+        <div class="col-start-3 col-span-2">
+            <form action="/list" method="post">
+                <div class="flex gap-2 p-4">
+                    <div class="flex-auto">
+                        <input type="text" name="title" placeholder="Purpose" class="border border-gray-900 rounded text-gray-900 w-full p-2 text-sm" required/>
+                    </div>
+                
+                <div class="flex ">
+                    <select name="time" class="flex-auto h-10 border rounded border-gray-900" >
+                      <option name="time" value="10:00 AM to 11:30 AM">10:00 AM to 11:30 AM</option>
+                      <option name="time" value="11:30 AM to 12:30 PM">11:30 AM to 12:30 PM</option>
+                      <option name="time" value="12:30 PM to 1:30 PM">12:30 PM to 1:30 PM</option>
+                    </select>
+                    </div>
+                <div class="flex-none">
+                    <button type="submit"   class="bg-green-600 text-white px-5 py-2 rounded font-medium py-1.5">Book</button>
+                </div>
+            </div>
+        </form>
+        
+        
+    </div>
+  </div>
+    
+  <div>
+    <%- include('listing.ejs', {totallist:totallist1}) %>
+  </div>
+    
+</body>
+</html>

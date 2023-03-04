@@ -12,6 +12,21 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
+    
+    static addappointment( title, starttime,endtime,duration) {
+      return this.create({ title: title, start:starttime,end:endtime,duration:duration});
+    }
+    
+    static getlist()
+    {
+      return this.findAll({
+        order: [
+          ['start', 'ASC'],
+      ],
+      });
+    }
+
+
   }
   List.init({
     title: DataTypes.STRING,

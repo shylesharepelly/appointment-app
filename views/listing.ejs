@@ -1,0 +1,32 @@
+<div class="bg-orange-100 text-gray-800 text-sm font-small ml-2 px-5 py-0.5 rounded dark:bg-gray-200 dark:text-gray-900 ">
+    <h1 class="text-xl text-black-900 font-bold">Appointments</h1>
+    <ul class="list-none">
+        <% for(var i=0; i<totallist.length; i++) {%>
+          <li class="appointment-Item">
+            <div class="flex items-center w-fit my-2 px-2 py-1 rounded hover:bg-purple-50">
+              <div class="flex-auto">
+                <input type="text" name="title" id="<%= totallist[i].id %>"  class="w-full rounded p-2 border border-blue-900" value="<%= totallist[i].title %>">
+              </div>
+              <div class="flex-auto">
+                <label  class="flex-auto text">
+                    <%= totallist[i].start %>
+                     &nbsp;to&nbsp;
+                     <%= totallist[i].end %>
+                  </label>
+              </div>
+              <div class="flex-auto">
+                &nbsp;
+                <label  class="flex-auto text">
+                    <%= totallist[i].duration %> mins
+                  </label>
+              </div>
+                  
+                 
+
+
+
+            </div>
+          </li>
+          <% } %>
+      </ul>
+</div>
