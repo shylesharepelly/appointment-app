@@ -17,6 +17,16 @@ module.exports = (sequelize, DataTypes) => {
       return this.create({ title: title, start:starttime,end:endtime,duration:duration});
     }
     
+
+    static modifytitle(title,lid){
+      console.log("title", title);
+      return this.update({title:title},
+        {
+          where:
+          {id:lid}
+        });
+    }
+    
     static getlist()
     {
       return this.findAll({

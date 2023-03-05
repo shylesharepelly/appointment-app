@@ -6,7 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Appointment List</title>
-   
+    <script>
+      function displaySelection() {
+        const selectElement = document.getElementById("duration");
+        const selectedOption = selectElement.options[selectElement.selectedIndex].value;
+        
+        
+        const list1Element = document.getElementById("30min");
+        const list2Element = document.getElementById("60min");
+
+        if (selectedOption === "30") {
+            list1Element.style.display = "block";
+            list2Element.style.display = "none";
+    }     else if (selectedOption === "60") {
+            list1Element.style.display = "none";
+            list2Element.style.display = "block";
+    }     else {
+            list1Element.style.display = "none";
+            list2Element.style.display = "none";
+    }
+        }
+
+        function updateappointment(id) {
+        const title = document.getElementById(`${id}`).value;
+          console.log("title",title);
+          fetch(`/list/${id}`, {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              title:title,
+              id:id
+          
+        })
+          }).then((res) => {
+            if(res.ok)
+            {
+              window.location.reload();
+            }
+          
+          }).catch(err => console.error(err))
+        }
+        function deleteappointment(id) {
+          console.log(id);
+          fetch(`/list/${id}`, {
+            method: 'delete',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              id:id
+        })
+          }).then((res) => {
+            if(res.ok)
+            {
+              window.location.reload();
+            }
+          }).catch(err => console.error(err))
+        }
+      </script>
     
 </head>
 <body>
@@ -20,24 +75,52 @@
                     </div>
                 
                 <div class="flex ">
-                    <select name="time" class="flex-auto h-10 border rounded border-gray-900" >
-                      <option name="time" value="10:00 AM to 11:30 AM">10:00 AM to 11:30 AM</option>
-                      <option name="time" value="11:30 AM to 12:30 PM">11:30 AM to 12:30 PM</option>
-                      <option name="time" value="12:30 PM to 1:30 PM">12:30 PM to 1:30 PM</option>
+                    <select name="duration" id="duration"   onchange="displaySelection()" class="flex-auto h-10 border rounded border-gray-900" required>
+                        <option value="">Select duration</option>
+                        <option name="duration" value="30">30 minutes</option>
+                      <option name="duration" value="60">60 minutes</option>
                     </select>
-                    </div>
-                <div class="flex-none">
-                    <button type="submit"   class="bg-green-600 text-white px-5 py-2 rounded font-medium py-1.5">Book</button>
                 </div>
+
+                <div class="flex-none">
+                  <button type="submit"   class="bg-green-600 text-white px-5 py-2 rounded font-medium py-1.5">Book</button>
+              </div>
+      
+             </div>   
+             
+          </div>
+
+            <div class="flex-none col-start-3 col-span-2">
+              <div id="30min" style="display:none">
+                <fieldset>
+                  <legend>Select start time:</legend>
+                  <% for(var i=0; i<startlist.length; i++) { %>
+                    <ul>
+                    <li> <input type="radio" name="start" value="<%= startlist[i] %>" required><%= startlist[i] %></input></li>
+                  </ul>
+                           
+                <% } %>
+              </fieldset>    
+              </div>
+                
+              <div id="60min" style="display:none">
+                <fieldset>
+                  <legend>Select start time:</legend>
+                  <% for(var i=0; i<startlist1.length; i++) { %>
+                    <ul>
+                    <li> <input type="radio" name="start" value="<%= startlist[i] %>" required><%= startlist1[i] %></input></li>
+                  </ul>
+                           
+                <% } %>
+              </fieldset>    
+              </div>
             </div>
         </form>
         
-        
-    </div>
   </div>
     
   <div>
-    <%- include('listing.ejs', {totallist:totallist1}) %>
+    <%- include('listing.ejs', {totallist:totallist1,list1,list2}) %>
   </div>
     
 </body>

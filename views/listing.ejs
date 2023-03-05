@@ -1,3 +1,4 @@
+
 <div class="bg-orange-100 text-gray-800 text-sm font-small ml-2 px-5 py-0.5 rounded dark:bg-gray-200 dark:text-gray-900 ">
     <h1 class="text-xl text-black-900 font-bold">Appointments</h1>
     <ul class="list-none">
@@ -9,22 +10,27 @@
               </div>
               <div class="flex-auto">
                 <label  class="flex-auto text">
-                    <%= totallist[i].start %>
+                    <%= list1[i] %>
                      &nbsp;to&nbsp;
-                     <%= totallist[i].end %>
+                     <%= list2[i] %>
                   </label>
               </div>
               <div class="flex-auto">
                 &nbsp;
                 <label  class="flex-auto text">
-                    <%= totallist[i].duration %> mins
+                    <%= totallist[i].duration %> minutes
                   </label>
               </div>
+              
+
+        <div class="py-5 px-5">
+        <button  name="update" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-5 py-2"><a href="" onclick="updateappointment(<%= totallist[i].id %>)">Update</a></button>
+        </div>
+  
+            <div class="py-5 px-5">
+            <button  name="delete" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded px-5 py-2"><a href="" onclick="deleteappointment(<%= totallist[i].id %>)">Delete</a></button>
+            </div>
                   
-                 
-
-
-
             </div>
           </li>
           <% } %>
