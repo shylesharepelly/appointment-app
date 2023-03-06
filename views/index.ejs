@@ -83,20 +83,22 @@
                 </div>
 
                 <div class="flex-none">
-                  <button type="submit"   class="bg-green-600 text-white px-5 py-2 rounded font-medium py-1.5">Book</button>
+                  <button type="submit"   class="bg-green-600 text-white px-5 py-2 rounded cursor-pointer font-medium py-1.5">Book</button>
               </div>
       
              </div>   
              
           </div>
 
-            <div class="flex-none col-start-3 col-span-2">
+            <div class="flex col-start-4 col-span-2">
               <div id="30min" style="display:none">
                 <fieldset>
                   <legend>Select start time:</legend>
                   <% for(var i=0; i<startlist.length; i++) { %>
                     <ul>
-                    <li> <input type="radio" name="start" value="<%= startlist[i] %>" required><%= startlist[i] %></input></li>
+                    <li> <input type="radio" name="start" id="<%= startlist[i] %>" value="<%= startlist[i] %>" required>
+                      <label for="<%= startlist[i] %>"><%= startlist[i] %></label>
+                    </input></li>
                   </ul>
                            
                 <% } %>
@@ -108,7 +110,9 @@
                   <legend>Select start time:</legend>
                   <% for(var i=0; i<startlist1.length; i++) { %>
                     <ul>
-                    <li> <input type="radio" name="start" value="<%= startlist[i] %>" required><%= startlist1[i] %></input></li>
+                    <li> <input type="radio" name="start" id="<%= startlist1[i] %>" value="<%= startlist1[i] %>" required>
+                      <label for="<%= startlist1[i] %>"><%= startlist1[i] %></label>
+                    </input></li>
                   </ul>
                            
                 <% } %>
